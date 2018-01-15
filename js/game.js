@@ -1,55 +1,68 @@
+var myGamePiece;
+
 function startGame() {
+    myGamePiece = new component(30, 30, "imgs/pj.png", 10, 120, "image");
     myGameArea.start();
-    myGamePiece = new component(50, 50, "red", 50, myGameArea.canvas.height-50);
-    myObstacle = new component(10, 60, "green", 300, myGameArea.canvas.height-60);
 }
 
-function component(width, height, color, x, y) {
+setTimeout(hola,2000);
+
+function hola() {
+    alert("hola")
+
+}
+
+var myGameArea = {
+    canvas : document.createElement("canvas"),
+    start : function() {
+        this.canvas.width = 480;
+        this.canvas.height = 270;
+        this.canvas.style.cursor = "none"; //hide the original cursor
+        this.context = this.canvas.getContext("2d");
+        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+        this.interval = setInterval(updateGameArea, 1);
+        window.addEventListener('mousemove', function (e) {
+            myGameArea.x = e.pageX;
+            myGameArea.y = e.pageY;
+        })
+    },
+    clear : function(){
+        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+}
+function component(width, height, color, x, y, type) {
+    this.type = type;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;
+    }
     this.width = width;
     this.height = height;
+    this.speedX = 0;
+    this.speedY = 0;
     this.x = x;
     this.y = y;
-    ctx = myGameArea.context;
-    ctx.fillStyle = color;
-    ctx.fillRect(this.x, this.y, this.width, this.height);
-    this.update = function(){
+    this.update = function() {
         ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        if (type == "image") {
+            ctx.drawImage(this.image,
+                this.x,
+                this.y,
+                this.width, this.height);
+        } else {
+            ctx.fillStyle = color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
     }
 }
-var myGameArea = {
-        canvas : document.createElement("canvas"),
-        start : function() {
-            this.canvas.width = 640;
-            this.canvas.height = 470;
-            this.context = this.canvas.getContext("2d");
-            document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-            this.interval = setInterval(updateGameArea, 20);
-        },
-        clear : function() {
-            this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        }
-    };
+
 function updateGameArea() {
     myGameArea.clear();
+    if (myGameArea.x && myGameArea.y) {
+        myGamePiece.x = myGameArea.x;
+        myGamePiece.y = myGameArea.y;
+    }
     myGamePiece.update();
-    myObstacle.update();
-
-
-}
-
-function jump(num) {
-    var index = 0;
-    while (index <= num){
-        myGamePiece.y +=1;
-        index++;
-    }
-    while (index >= 0){
-        myGamePiece.y -=1;
-        index--;
-    }
-
 }
 
 //Detectar la pulsación de la barra espaciadora (código 32)
@@ -59,8 +72,10 @@ function checkKey(e) {
 
     e = e || window.event;
 
-    if (e.keyCode === '32') {
-        jump(20);
+    if (e.keyCode == '32') {
+        myGamePiece.x +=1;
+        myGamePiece.y -=1;
+        //speedGame+=5;
     }
 
 }
