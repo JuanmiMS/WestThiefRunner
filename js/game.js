@@ -53,21 +53,27 @@ function updateGameArea() {
     if (myGameArea.x && myGameArea.y) {
         myGamePiece.x = myGameArea.x;
         myGamePiece.y = myGameArea.y;
+        checkKey
     }
     myGamePiece.update();
 }
 
 //Detectar la pulsación de la barra espaciadora (código 32)
+
+//Refactorizar
 document.onkeydown = checkKey;
+document.onkeyup = checkKey2;
 
 function checkKey(e) {
 
     e = e || window.event;
 
     if (e.keyCode == '32') {
-        myGamePiece.x +=1;
-        myGamePiece.y -=1;
-        //speedGame+=5;
+            pictureChange();
     }
-
 }
+
+function checkKey2(){
+    document.getElementById('redbutton').src="imgs/btn0.png";
+}
+//Hasta aquí
