@@ -4,14 +4,6 @@ function startGame() {
     myGamePiece = new component(30, 30, "imgs/pj.png", 10, 120, "image");
     myGameArea.start();
 }
-
-setTimeout(hola,2000);
-
-function hola() {
-    alert("hola")
-
-}
-
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
