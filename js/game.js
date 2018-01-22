@@ -1,7 +1,9 @@
 var myGamePiece;
+var jumping = false;
+var onAir=false;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 30, 175);
+    myGamePiece = new component(30, 30, "red", 30, 240);
     myGameArea.start();
 }
 
@@ -31,33 +33,36 @@ function component(width, height, color, x, y, type) {
     this.speedX = 0;
     this.gravity = 4;
     this.update = function() {
+        console.log(this.y);
+        console.log(jumping);
         ctx = myGameArea.context;
         ctx.fillStyle = color;
         ctx.fillRect(this.x, this.y, this.width, this.height);
     };
     this.newPos = function() {
         this.x += this.speedX;
-        this.y += this.gravity;
+        this.jumpTest();         
         this.hitBottom();
     };
     this.hitBottom = function() {
         var rockbottom = myGameArea.canvas.height - this.height;
         if (this.y > rockbottom) {
             this.y = rockbottom;
+            onAir = false;
         }
-
-    this.jump = function (){
-            alert(this.y);
-        if (this.y<=240){
-            while (this.y<=200){
-                this.y -= this.gravity;
-            }
-        }
-        else{this.y += this.gravity;}
-        }
-
     }
-}
+    this.jumpTest = function (){
+        if (this.y > 140 && jumping == true){
+            this.y -= this.gravity;
+            
+        }
+        else{
+            jumping = false;
+            this.y += this.gravity;
+        }
+    }
+    }
+
 
 function updateGameArea() {
     myGameArea.clear();
@@ -75,10 +80,12 @@ document.onkeyup = checkKey2;
 function checkKey(e) {
 
     e = e || window.event;
+    document.getElementById('redbutton').src="imgs/btn1.png";
+    if (e.keyCode == '32' && onAir == false) {
+        
+        jumping = true;
+        onAir = true;
 
-    if (e.keyCode == '32') {
-        pictureChange();
-        myGamePiece.jump();
     }
 }
 
