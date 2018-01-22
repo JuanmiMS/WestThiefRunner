@@ -1,9 +1,9 @@
 var myGamePiece;
 var jumping = false;
-var onAir=false;
+var onAir = false;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 30, 240);
+    myGamePiece = new component(30, 30, "imgs/pj.png", 30, 240, "image");
     myGameArea.start();
 }
 
@@ -26,6 +26,10 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
+    if (type == "image") {
+        this.image = new Image();
+        this.image.src = color;      
+    }
     this.width = width;
     this.height = height;
     this.x = x;
@@ -33,11 +37,19 @@ function component(width, height, color, x, y, type) {
     this.speedX = 0;
     this.gravity = 4;
     this.update = function() {
-        console.log(this.y);
-        console.log(jumping);
         ctx = myGameArea.context;
-        ctx.fillStyle = color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
+        if (type == "image") {
+            if (onAir == false){
+                this.image.src = "imgs/pj.png";
+            }
+            else{
+                this.image.src = "imgs/pj2.png";
+            }
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+          } else {
+              ctx.fillStyle = color;
+              ctx.fillRect(this.x, this.y, this.width, this.height);
+        }
     };
     this.newPos = function() {
         this.x += this.speedX;
