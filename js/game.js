@@ -6,12 +6,12 @@ function startGame() {
     myGamePiece = new component(30, 30, "imgs/pj.png", 30, 240, "image");
     myGameArea.start();
 }
-
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
         this.canvas.width = 480;
         this.canvas.height = 270;
+        
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
@@ -25,6 +25,7 @@ var myGameArea = {
 }
 
 function component(width, height, color, x, y, type) {
+
     this.type = type;
     if (type == "image") {
         this.image = new Image();
@@ -38,6 +39,11 @@ function component(width, height, color, x, y, type) {
     this.gravity = 4;
     this.update = function() {
         ctx = myGameArea.context;
+        //Establecemos un fondo en el canvas
+        setBackground("imgs/bg.png");
+
+
+        //Salto
         if (type == "image") {
             if (onAir == false){
                 this.image.src = "imgs/pj.png";
@@ -50,6 +56,9 @@ function component(width, height, color, x, y, type) {
               ctx.fillStyle = color;
               ctx.fillRect(this.x, this.y, this.width, this.height);
         }
+        //Fin salto
+        
+          
     };
     this.newPos = function() {
         this.x += this.speedX;
@@ -64,7 +73,7 @@ function component(width, height, color, x, y, type) {
         }
     }
     this.jumpTest = function (){
-        if (this.y > 140 && jumping == true){
+        if (this.y > 160 && jumping == true){
             this.y -= this.gravity;
             
         }
@@ -81,6 +90,17 @@ function updateGameArea() {
     myGamePiece.newPos();
     myGamePiece.update();
 }
+
+//Hacer que todo se cargue en el onload...
+function setBackground(bg){
+    var background = new Image();
+        background.src = bg;
+        ctx.drawImage(background,0,0); 
+}
+
+ctx = myGameArea.context;
+
+
 
 //Detectar la pulsación de la barra espaciadora (código 32)
 
