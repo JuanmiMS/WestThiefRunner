@@ -2,28 +2,31 @@ var myGamePiece;
 var myObstacles = [];
 var jumping = false;
 var onAir = false;
-var gameSpeed = 3;
+var gameSpeed = 4;
 var TotalPoints = 0;
 
 function startGame() {
-    myGamePiece = new component(30, 30, "imgs/pj.png", 30, 240, "image");
+    myGamePiece = new component(30, 30, "imgs/pj.png", 30, 240, "pj");
     //grosor, altura total, color, posX, PosY
-    myObstacle = new component(10, myGameArea.canvas.height, "green", 300, 240); 
+    myObstacle = new component(64, 64, "imgs/obs1.png", 300, 240, "obs1"); 
     myGameArea.start();
+    
 }
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
+        
         this.canvas.width = 480;
         this.canvas.height = 270; 
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;  
         this.interval = setInterval(updateGameArea, 20);
+        
     },
     stop : function() {
         clearInterval(this.interval);
-        alert(TotalPoints);
+        //alert(TotalPoints);
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -38,10 +41,15 @@ function everyinterval(n) {
 function component(width, height, color, x, y, type) {
 
     this.type = type;
-    if (type == "image") {
+    if (type == "pj") {
         this.image = new Image();
-        this.image.src = color;      
+        this.image.src = color;  
     }
+    else if (type == "obs1") {
+        this.image = new Image();
+        this.image.src = color;
+
+      }
     this.width = width;
     this.height = height;
     this.x = x;
@@ -53,7 +61,7 @@ function component(width, height, color, x, y, type) {
         sumPoints();
         ctx = myGameArea.context;
         //Salto
-        if (type == "image") {
+        if (type == "pj") {
             if (onAir == false){
                 this.image.src = "imgs/pj.png";
             }
@@ -61,13 +69,24 @@ function component(width, height, color, x, y, type) {
                 this.image.src = "imgs/pj2.png";
             }
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-          } else {
+        } 
+        else if (type == "obs1"){
+            //console.log("entraa");
+            this.image.src = "imgs/obs1.png";
+            ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        }
+            
+          else {
               ctx.fillStyle = color;
               ctx.fillRect(this.x, this.y, this.width, this.height);
         }
         //Fin salto
+
+        if (type == "obs1") {
+            this.image.src = "imgs/obs1.png";
+            //console.log("entra");
+        }
         
-          
     };
     this.newPos = function() {
         this.x += this.speedX;
@@ -113,12 +132,13 @@ function component(width, height, color, x, y, type) {
 
 
 function updateGameArea() {
-    if (myGamePiece.crashWith(myObstacle)) {
-        
-        myGameArea.stop();
-        
+    //Si pones aquí la función de bg, cuando puedes sale la imagen D:
+      
+    if (myGamePiece.crashWith(myObstacle)) { 
+        myGameArea.stop();      
     } 
     else {
+        sumPoints();
         var x, y;
         for (i = 0; i < myObstacles.length; i += 1) {
             if (myGamePiece.crashWith(myObstacles[i])) {
@@ -126,7 +146,9 @@ function updateGameArea() {
                 return;
             } 
         }
+
         myGameArea.clear();
+        setBackground("imgs/bg.png");
         myGameArea.frameNo += 1;
 
 
@@ -136,12 +158,13 @@ function updateGameArea() {
             y = myGameArea.canvas.height - 200
 
             //cambiar X por un valor random
-            myObstacles.push(new component(10, 200, "green", x, 240));
+            myObstacles.push(new component(30, 64, "imgs/obstaculo.png", x, 250, "obs1"));
         }
         for (i = 0; i < myObstacles.length; i += 1) {
             myObstacles[i].x -= gameSpeed;
             myObstacles[i].update();
         }
+      
     myGamePiece.newPos();
     myGamePiece.update();
     }
@@ -152,7 +175,6 @@ function getRandom() {
     var max = 80;
     var min = 50;
     var ran = Math.floor(Math.random() * (max - min) + min);
-    console.log(ran);
     return ran;
 }
 
