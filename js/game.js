@@ -8,7 +8,7 @@ var TotalPoints = 0;
 
 function startGame() {
     
-    myGamePiece = new component(30, 30, "imgs/pj.png", 30, 240, "pj");
+    myGamePiece = new component(34, 61, "imgs/pj.png", 30, 240, "pj");
     //grosor, altura total, color, posX, PosY
     myObstacle = new component(64, 64, "imgs/obs1.png", 300, 240, "obs1"); 
     myGameArea.start();
@@ -37,11 +37,21 @@ var myGameArea = {
     },
     stop : function() {
         clearInterval(this.interval);
+        endGame();
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.fillStyle = "#FF0000";
+        ctx.fillRect(0,0,150,750);
         //alert(TotalPoints);
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
+}
+
+function endGame(){
+    
+    
 }
 
 function everyinterval(n) {
@@ -113,7 +123,7 @@ function component(width, height, color, x, y, type) {
         }
     }
     this.jumpTest = function (){
-        if (this.y > 160 && jumping == true){
+        if (this.y > 250 && jumping == true){
             this.y -= this.gravity;
             
         }
@@ -158,26 +168,25 @@ function updateGameArea() {
                 return;
             } 
         }
-
+        
         myGameArea.clear();
         setBackground("imgs/bg.png");
-        oldTV("imgs/old.png");
+        //oldTV("imgs/old.png");
         myGameArea.frameNo += 1;
 
 
-        //cambiar 50 por numero random
+
         if (myGameArea.frameNo == 1 || everyinterval(60) ){
             x = myGameArea.canvas.width;
             y = getRandomNum();
-            console.log("Y:"+y);
-
+            sumGameSpeed(TotalPoints);
             myObstacles.push(new component(30, 64, "imgs/obstaculo.png", x, y, "obs1"));
         }
         for (i = 0; i < myObstacles.length; i += 1) {
             myObstacles[i].x -= gameSpeed;
             myObstacles[i].update();
         }
-      
+        
     myGamePiece.newPos();
     myGamePiece.update();
     }
@@ -185,13 +194,23 @@ function updateGameArea() {
 
 function getRandomNum(){
     //Recordar que los números es la inversa por que es la distancia desde arriba!
-    var max = 250;
-    var min = 230;
+    var max = 370;
+    var min = 355;
+    /*  var max = 100;
+    var min = 1;*/
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 //Distancia entre los obstaculos
 function getObstacles() {
     return ran;
+}
+
+function sumGameSpeed(TotalPoints){
+    if (TotalPoints%5==0){
+        gameSpeed += 3;
+        console.log(gameSpeed);
+    }
+    
 }
 
 function sumPoints(){

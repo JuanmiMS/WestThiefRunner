@@ -10,11 +10,9 @@
 <body onload="startGame()">
     <p><script type="text/javascript">document.write(GAME_VERSION)</script></p>
     <!--Refactorizar-->
-    <br>
-    <p>Puntos totales</p>
-    <br>
-    <p id="points" style="float:right;">Puntos totales</p>
-    <br>
+    <br>Puntos totales:
+    <h1><p id="points">Puntos totales</p></h1>
+
     <!-- -->
 <div id="buttons">
 
@@ -25,6 +23,11 @@
     <input type="button" id="startButton" value="Start Game" onclick="pictureChange()">
     <button onmousedown="restart()">Restart</button>
 </div>
+
+<canvas id="canvas" width="200" height="100"
+style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
 <div id="quehaceres">
     <p><h1>¿Qué falta por hacer?</h1></p>
     <p>Aumentar tamaño canvas</p>
