@@ -1,3 +1,4 @@
+var GAME_VERSION = "ALPHA-0.4";
 var myGamePiece;
 var myObstacles = [];
 var jumping = false;
@@ -6,6 +7,7 @@ var gameSpeed = 4;
 var TotalPoints = 0;
 
 function startGame() {
+    
     myGamePiece = new component(30, 30, "imgs/pj.png", 30, 240, "pj");
     //grosor, altura total, color, posX, PosY
     myObstacle = new component(64, 64, "imgs/obs1.png", 300, 240, "obs1"); 
@@ -59,6 +61,7 @@ function component(width, height, color, x, y, type) {
 
     this.update = function() {
         sumPoints();
+        document.getElementById("points").innerHTML = TotalPoints;
         ctx = myGameArea.context;
         //Salto
         if (type == "pj") {
@@ -149,16 +152,17 @@ function updateGameArea() {
 
         myGameArea.clear();
         setBackground("imgs/bg.png");
+        oldTV("imgs/old.png");
         myGameArea.frameNo += 1;
 
 
         //cambiar 50 por numero random
-        if (myGameArea.frameNo == 1 || everyinterval(getRandom())) {
+        if (myGameArea.frameNo == 1 || everyinterval(60) ){
             x = myGameArea.canvas.width;
-            y = myGameArea.canvas.height - 200
+            y = getRandomNum();
+            console.log("Y:"+y);
 
-            //cambiar X por un valor random
-            myObstacles.push(new component(30, 64, "imgs/obstaculo.png", x, 250, "obs1"));
+            myObstacles.push(new component(30, 64, "imgs/obstaculo.png", x, y, "obs1"));
         }
         for (i = 0; i < myObstacles.length; i += 1) {
             myObstacles[i].x -= gameSpeed;
@@ -170,11 +174,14 @@ function updateGameArea() {
     }
 }
 
+function getRandomNum(){
+    //Recordar que los números es la inversa por que es la distancia desde arriba!
+    var max = 250;
+    var min = 230;
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 //Distancia entre los obstaculos
-function getRandom() {
-    var max = 80;
-    var min = 50;
-    var ran = Math.floor(Math.random() * (max - min) + min);
+function getObstacles() {
     return ran;
 }
 
@@ -183,6 +190,12 @@ function sumPoints(){
 }
 //Hacer que todo se cargue en el onload...
 function setBackground(bg){
+    ctx = myGameArea.context;
+    var background = new Image();
+        background.src = bg;
+        ctx.drawImage(background,0,0); 
+}
+function oldTV(bg){
     ctx = myGameArea.context;
     var background = new Image();
         background.src = bg;
