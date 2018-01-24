@@ -12,6 +12,7 @@ function startGame() {
     //grosor, altura total, color, posX, PosY
     myObstacle = new component(64, 64, "imgs/obs1.png", 300, 240, "obs1"); 
     myGameArea.start();
+    changeIntToImg();
     
 }
 function restart() {
@@ -68,7 +69,7 @@ function component(width, height, color, x, y, type) {
     this.gravity = 4;
 
     this.update = function() {
-        sumPoints();
+        //sumPoints();
         document.getElementById("points").innerHTML = TotalPoints;
         ctx = myGameArea.context;
         //Salto
@@ -149,7 +150,7 @@ function updateGameArea() {
         myGameArea.stop();      
     } 
     else {
-        sumPoints();
+        //sumPoints();
         var x, y;
         for (i = 0; i < myObstacles.length; i += 1) {
             if (myGamePiece.crashWith(myObstacles[i])) {

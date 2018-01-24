@@ -6,7 +6,6 @@ body{
     margin-left: 1100px;
     position: absolute;
     float: left;
-    background-color: red;
 }
 canvas {
     border: 1px solid #d3d3d3;

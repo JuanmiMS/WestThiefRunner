@@ -17,7 +17,7 @@ img[9] = "imgs/9.png";
 
 function changeIntToImg() {
 	setTimeout("changeIntToImg()", 1000);
-    
+    sumPoints();
     var imagen = document.getElementById("score").src = img[x];
     x++;
 
