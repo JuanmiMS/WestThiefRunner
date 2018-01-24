@@ -1,6 +1,8 @@
 
 var finalScore = 0;
+var nextPunt = "unidades";
 var img = [];
+i = 0;
 x = 0;
 img[0] = "imgs/0.png";
 img[1] = "imgs/1.png";
@@ -18,16 +20,18 @@ img[9] = "imgs/9.png";
 function changeIntToImg() {
 	setTimeout("changeIntToImg()", 1000);
     sumPoints();
-    var imagen = document.getElementById("score").src = img[x];
+
+    document.getElementById(nextPunt).src = img[x];
     x++;
 
     if(x == img.length){
+        nextPunt = "decenas";
         x = 0;
     }
+
 }
 
-function pictureChange(){
-	changeIntToImg();
-    document.getElementById('redbutton').src="imgs/btn1.png";
+function startNext(){
+
 }
 
