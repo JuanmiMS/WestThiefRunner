@@ -3,6 +3,7 @@ var finalScore = 0;
 var img = [];
 x = 0;
 function sumScore(){
+
     img[0] = "imgs/0.png";
     img[1] = "imgs/1.png";
     img[2] = "imgs/2.png";
@@ -17,11 +18,13 @@ function sumScore(){
     **/
 }
 
+
 function changeImage(){
 
 }
 
 function changeIntToImg(any){
+function changeIntToImg() {
 	setTimeout("changeIntToImg()", 1000);
 	finalScore += 1;
     var imagen = document.getElementById("score").src = img[x];
