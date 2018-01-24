@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body onload="startGame()">
-    <p style="float:right;"><script type="text/javascript">document.write(GAME_VERSION)</script></p>
+    <p><script type="text/javascript">document.write(GAME_VERSION)</script></p>
     <!--Refactorizar-->
     <br>
-    <p style="float:right;">Puntos totales</p>
+    <p>Puntos totales</p>
     <br>
-    <p id="points" style="float:right;">Puntos totales</p>
+    <p id="points" >Puntos totales</p>
     <!-- -->
 <div id="buttons">
 
@@ -24,9 +24,12 @@
     <input type="button" id="startButton" value="Start Game" onclick="pictureChange()">
     <button onmousedown="restart()">Restart</button>
 </div>
-<p><h1>¿Qué falta por hacer?</h1></p>
-<p>Aumentar tamaño canvas</p>
-<p>Aumentar tamaño canvas</p>
-<p id="final"></p>
+<div id="quehaceres">
+    <p><h1>¿Qué falta por hacer?</h1></p>
+    <p>Aumentar tamaño canvas</p>
+    <p>Crear sistema BUENO de puntuaciones</p>
+    <p>aumentar velocidad según puntuación</p>
+    <p>Centrar canvas</p>
+</div>
 </body>
 </html>
