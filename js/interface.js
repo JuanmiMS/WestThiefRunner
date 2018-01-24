@@ -15,22 +15,15 @@ img[8] = "imgs/8.png";
 img[9] = "imgs/9.png";
 **/
 
-
-
-function changeImage(){
-
-}
-
 function changeIntToImg() {
 	setTimeout("changeIntToImg()", 1000);
-	finalScore += 1;
+    
     var imagen = document.getElementById("score").src = img[x];
     x++;
 
     if(x == img.length){
         x = 0;
     }
-// Añadir acumulador con la puntuación a enseñar al final
 }
 
 function pictureChange(){
