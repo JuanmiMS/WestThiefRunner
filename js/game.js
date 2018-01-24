@@ -14,6 +14,14 @@ function startGame() {
     myGameArea.start();
     
 }
+function restart() {
+    //Reiniciamos los obstáculos y los puntos
+    myObstacles = [];
+    TotalPoints = 0
+    myGameArea.stop();
+    myGameArea.clear();
+    startGame();
+}
 var myGameArea = {
     canvas : document.createElement("canvas"),
     start : function() {
