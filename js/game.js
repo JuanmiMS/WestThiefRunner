@@ -239,17 +239,13 @@ ctx = myGameArea.context;
 //Refactorizar
 document.onkeydown = checkKey;
 document.onkeyup = checkKey2;
-//document.onkeyup = accelerate(0.1);
-
 function checkKey(e) {
 
     e = e || window.event;
     document.getElementById('redbutton').src="imgs/btn1.png";
-    if (e.keyCode == '32' && onAir == false) {
-        
+    if (e.keyCode == '32' && onAir == false) {      
         jumping = true;
         onAir = true;
-
     }
 }
 
