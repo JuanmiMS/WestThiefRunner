@@ -38,10 +38,6 @@ var myGameArea = {
     stop : function() {
         clearInterval(this.interval);
         endGame();
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        ctx.fillStyle = "#FF0000";
-        ctx.fillRect(0,0,150,750);
         //alert(TotalPoints);
     },
     clear : function() {
