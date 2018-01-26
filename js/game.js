@@ -1,5 +1,6 @@
-var GAME_VERSION = "ALPHA-0.4";
+var GAME_VERSION = "ALPHA-0.6";
 var myGamePiece;
+var playing = true;
 var myObstacles = [];
 var jumping = false;
 var onAir = false;
@@ -12,7 +13,7 @@ function startGame() {
     //grosor, altura total, color, posX, PosY
     myObstacle = new component(64, 64, "imgs/obs1.png", 300, 240, "obs1"); 
     myGameArea.start();
-    changeIntToImg();
+    puntuation();
     
 }
 function restart() {
@@ -38,7 +39,6 @@ var myGameArea = {
     stop : function() {
         clearInterval(this.interval);
         endGame();
-        //alert(TotalPoints);
     },
     clear : function() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -46,13 +46,7 @@ var myGameArea = {
 }
 
 function endGame(){
-    
-    
-}
-
-function everyinterval(n) {
-    if ((myGameArea.frameNo / n) % 1 == 0) {return true;}
-    return false;
+       playing = false;
 }
 
 function component(width, height, color, x, y, type) {
@@ -75,8 +69,8 @@ function component(width, height, color, x, y, type) {
     this.gravity = 4;
 
     this.update = function() {
-        //sumPoints();
-        document.getElementById("points").innerHTML = TotalPoints;
+
+        
         ctx = myGameArea.context;
         //Salto
         if (type == "pj") {
@@ -156,7 +150,6 @@ function updateGameArea() {
         myGameArea.stop();      
     } 
     else {
-        //sumPoints();
         var x, y;
         for (i = 0; i < myObstacles.length; i += 1) {
             if (myGamePiece.crashWith(myObstacles[i])) {
@@ -164,25 +157,35 @@ function updateGameArea() {
                 return;
             } 
         }
-        
         myGameArea.clear();
         setBackground("imgs/bg.png");
         //oldTV("imgs/old.png");
         myGameArea.frameNo += 1;
 
+        function everyinterval(n) {
+            if ((myGameArea.frameNo / n) % 1 == 0) {
+                //console.log("intervalo True");
+                
+                return true;
+            }
+            //console.log("intervalo False");
+            return false;
+        }
 
-
-        if (myGameArea.frameNo == 1 || everyinterval(60) ){
+        if (everyinterval(60) ){
             x = myGameArea.canvas.width;
             y = getRandomNum();
-            sumGameSpeed(TotalPoints);
-            myObstacles.push(new component(30, 64, "imgs/obstaculo.png", x, y, "obs1"));
+            //cada vez que sale un obj suma 1 a la puntuación
+            puntuation();
+            //sumGameSpeed(TotalPoints);
+            myObstacles.push(new component(30, 64, "imgs/obstaculo.png", myGameArea.canvas.width, y, "obs1"));
         }
         for (i = 0; i < myObstacles.length; i += 1) {
             myObstacles[i].x -= gameSpeed;
+            
             myObstacles[i].update();
         }
-        
+    
     myGamePiece.newPos();
     myGamePiece.update();
     }
@@ -202,8 +205,8 @@ function getObstacles() {
 }
 
 function sumGameSpeed(TotalPoints){
-    if (TotalPoints%5==0){
-        gameSpeed += 3;
+    if (TotalPoints%10==0){
+        gameSpeed += 1;
         console.log(gameSpeed);
     }
     

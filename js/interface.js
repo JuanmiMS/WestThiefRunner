@@ -1,4 +1,3 @@
-
 var nextPunt = "unidades";
 var img = [];
 z = 0;
@@ -16,34 +15,34 @@ img[8] = "imgs/8.png";
 img[9] = "imgs/9.png";
 
 
-function changeIntToImg() {
-	setTimeout("changeIntToImg()", 1000);
-    sumPoints();
-    if(z!=10){
-        document.getElementById("unidades").src = img[x];
-        console.log("Valor de X"+x);
+function puntuation() {
         
-        if(x == 10){
-            y++;
-            document.getElementById("unidades").src = img[0];
-            document.getElementById("decenas").src = img[y];
-            x=0;
-        }
-        if(y == 10){
-            z++;
-            document.getElementById("decenas").src = img[0];
-            document.getElementById("centenas").src = img[z];
-            x=0;
-            y=0;
+        if(z!=10){
+            document.getElementById("unidades").src = img[x];
             
+            if(x == 10){
+                y++;
+                document.getElementById("unidades").src = img[0];
+                document.getElementById("decenas").src = img[y];
+                x=0;
+            }
+            if(y == 10 && playing){
+                z++;
+                document.getElementById("decenas").src = img[0];
+                document.getElementById("centenas").src = img[z];
+                x=0;
+                y=0;
+                
+            }
+            if(z == 10 && playing){
+                document.getElementById("centenas").src = img[z];
+            }
+            x++;
+        }else{
+            alert("Ereh un makina premoh");
         }
-        if(z == 10){
-            document.getElementById("centenas").src = img[z];
-        }
-        x++;
-    }else{
-        alert("Ereh un makina premoh");
-    }
-    
+
+            
+        
 }
 
