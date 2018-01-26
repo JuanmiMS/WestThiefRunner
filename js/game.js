@@ -23,6 +23,12 @@ function restart() {
     myGameArea.stop();
     myGameArea.clear();
     startGame();
+    z = 0;
+y = 0;
+x = 0;
+document.getElementById("unidades").src = "imgs/0.png";
+document.getElementById("decenas").src= "imgs/0.png";
+document.getElementById("centenas").src= "imgs/0.png";
 }
 var myGameArea = {
     canvas : document.createElement("canvas"),
@@ -245,6 +251,9 @@ function checkKey(e) {
     if (e.keyCode == '32' && onAir == false) {      
         jumping = true;
         onAir = true;
+    }
+    if (e.keyCode == '82') {      
+        restart();
     }
 }
 
