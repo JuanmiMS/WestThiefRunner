@@ -118,7 +118,7 @@ function component(width, height, color, x, y, type) {
         }
     }
     this.jumpTest = function (){
-        if (this.y > 200 && jumping == true){
+        if (this.y > 230 && jumping == true){
             this.y -= this.gravity;
             
         }
@@ -199,7 +199,7 @@ function updateGameArea() {
 function getRandomNum(){
     //Recordar que los números es la inversa por que es la distancia desde arriba!
     var max = 360;
-    var min = 345;
+    var min = 335;
     /*var max = 100;
     var min = 1;*/
     return Math.floor(Math.random() * (max - min + 1)) + min;
