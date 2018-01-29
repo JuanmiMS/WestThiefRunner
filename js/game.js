@@ -9,9 +9,9 @@ var TotalPoints = 0;
 
 function startGame() {
     
-    myGamePiece = new component(34, 61, "imgs/pj.png", 30, 240, "pj");
+    myGamePiece = new component(51, 61, "imgs/pj.png", 30, 240, "pj");
     //grosor, altura total, color, posX, PosY
-    myObstacle = new component(64, 64, "imgs/obs1.png", 300, 240, "obs1"); 
+    myObstacle = new component(64, 64, "imgs/cactus.png", 300, 240, "cactus"); 
     myGameArea.start();
     puntuation();
     
@@ -56,13 +56,12 @@ function endGame(){
 }
 
 function component(width, height, color, x, y, type) {
-
     this.type = type;
     if (type == "pj") {
         this.image = new Image();
         this.image.src = color;  
     }
-    else if (type == "obs1") {
+    else if (type == "cactus") {
         this.image = new Image();
         this.image.src = color;
 
@@ -88,9 +87,9 @@ function component(width, height, color, x, y, type) {
             }
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         } 
-        else if (type == "obs1"){
+        else if (type == "cactus"){
             //console.log("entraa");
-            this.image.src = "imgs/obs1.png";
+            this.image.src = "imgs/cactus.png";
             ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
         }
             
@@ -100,8 +99,8 @@ function component(width, height, color, x, y, type) {
         }
         //Fin salto
 
-        if (type == "obs1") {
-            this.image.src = "imgs/obs1.png";
+        if (type == "cactus") {
+            this.image.src = "imgs/cactus.png";
             //console.log("entra");
         }
         
@@ -119,7 +118,7 @@ function component(width, height, color, x, y, type) {
         }
     }
     this.jumpTest = function (){
-        if (this.y > 250 && jumping == true){
+        if (this.y > 200 && jumping == true){
             this.y -= this.gravity;
             
         }
@@ -184,7 +183,7 @@ function updateGameArea() {
             //cada vez que sale un obj suma 1 a la puntuación
             puntuation();
             //sumGameSpeed(TotalPoints);
-            myObstacles.push(new component(30, 64, "imgs/obstaculo.png", myGameArea.canvas.width, y, "obs1"));
+            myObstacles.push(new component(30, 64, "imgs/obstaculo.png", myGameArea.canvas.width, y, "cactus"));
         }
         for (i = 0; i < myObstacles.length; i += 1) {
             myObstacles[i].x -= gameSpeed;
@@ -199,9 +198,9 @@ function updateGameArea() {
 
 function getRandomNum(){
     //Recordar que los números es la inversa por que es la distancia desde arriba!
-    var max = 370;
-    var min = 355;
-    /*  var max = 100;
+    var max = 360;
+    var min = 345;
+    /*var max = 100;
     var min = 1;*/
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
