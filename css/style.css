@@ -8,6 +8,37 @@ body{
     background-color: rgb(119, 144, 255);
     
 }
+#noGame{
+    background: blue;
+    width: 600px;
+    height: 390px;
+    border: 1px solid #d3d3d3;
+    position: center;
+    padding: 0;
+    margin: auto;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+#dead{
+    background: red;
+    width: 600px;
+    height: 390px;
+    opacity: 0.6;
+    border: 1px solid #d3d3d3;
+    position: center;
+    padding: 0;
+    margin: auto;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
 #quehaceres{
     width: 300px;
     margin-left: 1100px;
@@ -19,11 +50,6 @@ body{
 canvas {
     border: 1px solid #d3d3d3;
     position: center;
-    /*position: absolute;
-    background-color: #f1f1f1;
-    margin: 0 auto;
-    margin-left: 450px;
-    margin-top: 100px;*/
     padding: 0;
     margin: auto;
     display: block;

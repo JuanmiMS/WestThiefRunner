@@ -7,15 +7,10 @@
     <script src="js/interface.js"></script>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body onload="startGame()">
+<body>
     <p><script type="text/javascript">document.write(GAME_VERSION)</script></p>
 
 <div id="buttons">
-
-    <!--<img id="centenasMillar" src="imgs/0.png"/>-->
-    <!--<img id="decenasMillar" src="imgs/0.png"/>-->
-    <!--<img id="unidadesMillar" src="imgs/0.png"/>-->
-    
     <img id="centenas" src="imgs/0.png"/>
     <img id="decenas" src="imgs/0.png"/>
     <img id="unidades" src="imgs/0.png"/>
@@ -25,15 +20,14 @@
     <button onmousedown="restart()">Restart</button>
 </div>
 
-<!--<canvas id="canvas" width="200" height="100"
-style="border:1px solid #c3c3c3;">
-Your browser does not support the canvas element.
-</canvas>-->
+<div id="noGame"></div>
+<div id="dead"></div>
+
 <div id="quehaceres">
     <p><h1>¿Qué falta por hacer?</h1></p>
     <p>Centrar botones</p>
     <p>Imagenes buenas...</p>
-    <p>Pantalla post-muerte</p>
+    <p>Pantalla pre-post-muerte</p>
     <p></p>
 </div>
 </body>
