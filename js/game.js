@@ -243,7 +243,7 @@ function checkKey(e) {
         //Quita la imagen principal
         
         if (playing == false && isDead == false){
-            document.getElementById("noGame").style.display = "none";
+            document.getElementById("preGame").style.display = "none";
             startGame();
             playing = true;
         }
