@@ -9,8 +9,6 @@ var TotalPoints = 0;
 var isDead = false;
 
 function startGame() {
-    
-
     //Creamos el pj y los obstáculos
     myGamePiece = new component(51, 61, "imgs/pj.png", 30, 240, "pj");
     //grosor, altura total, color, posX, PosY

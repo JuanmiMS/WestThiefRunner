@@ -60,15 +60,18 @@ canvas {
     right: 0;
     
 }
-#buttons{
-    float: left;
-    margin-left: 0;
-    padding: 0;
+#recreativa{
+    width: 780px;
+    height: 715px;
     margin: auto;
-    display: block;
     position: absolute;
-    top: 0;
+    top: 0; left: 0; bottom: 0; right: 0;
+    /* border: solid black;*/
+    
+}
+#buttons{
+    min-width: 780px;
+    position: absolute;
     bottom: 0;
-    left: 0;
-    right: 0;
+    margin-left: 177px;
 }
