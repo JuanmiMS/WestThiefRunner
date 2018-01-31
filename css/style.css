@@ -1,3 +1,4 @@
+
 body{
     width: 1300px;
     /*Background fixed*/
@@ -6,8 +7,8 @@ body{
     background-position: center;
     background-image: url('../imgs/bg_web.jpg');
     background-color: rgb(119, 144, 255);
-    
 }
+
 #noGame{
     background: blue;
     width: 600px;
@@ -23,6 +24,7 @@ body{
     left: 0;
     right: 0;
 }
+
 #dead{
     background: red;
     width: 600px;
@@ -39,14 +41,7 @@ body{
     left: 0;
     right: 0;
 }
-#quehaceres{
-    width: 300px;
-    margin-left: 1100px;
-    position: absolute;
-    float: left;
-    background-color: white;
-    
-}
+
 canvas {
     border: 1px solid #d3d3d3;
     position: center;
@@ -62,13 +57,15 @@ canvas {
 }
 #recreativa{
     width: 780px;
-    height: 715px;
+    height: 600px;
     margin: auto;
-    position: absolute;
-    top: 0; left: 0; bottom: 0; right: 0;
-    /* border: solid black;*/
-    
+    position: fixed;
+    top: 0; 
+    left: 0; 
+    bottom: 0; 
+    right: 0;    
 }
+
 #buttons{
     min-width: 780px;
     position: absolute;
