@@ -1,17 +1,15 @@
 body{
     width: 1300px;
     /*Background fixed*/
-    background-repeat: no-repeat;
+    background-repeat: no-repeat, repeat;
     background-attachment: fixed;
     background-position: center;
-    background-image: url('../imgs/bg_web.jpg');
-    background-color: rgb(176, 143, 30);
+    background-image: url('../imgs/arcademachine.png'), url('../imgs/bg.gif') ;
 }
 #preGame{
     background: url(../imgs/preGame.jpg);
     width: 600px;
     height: 390px;
-    border: 1px solid #d3d3d3;
     position: center;
     padding: 0;
     margin: auto;
@@ -27,7 +25,6 @@ body{
     background: url(../imgs/dead.png);
     width: 600px;
     height: 390px;
-    border: 1px solid #d3d3d3;
     position: center;
     padding: 0;
     margin: auto;
@@ -40,7 +37,6 @@ body{
 }
 
 canvas {
-    border: 1px solid #d3d3d3;
     position: center;
     padding: 0;
     margin: auto;

@@ -191,7 +191,7 @@ function updateGameArea() {
             } 
         }
         myGameArea.clear();
-        setBackground("imgs/bg.png");
+        //setBackground("imgs/bg.png");
         //oldTV("imgs/old.png");
         myGameArea.frameNo += 1;
 
