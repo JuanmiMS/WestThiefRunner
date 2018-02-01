@@ -24,10 +24,9 @@ body{
 }
 
 #dead{
-    background: url(../imgs/dead.jpg);
+    background: url(../imgs/dead.png);
     width: 600px;
     height: 390px;
-    opacity: 0.6;
     border: 1px solid #d3d3d3;
     position: center;
     padding: 0;
