@@ -40,9 +40,6 @@ function puntuation() {
             x++;
         }else{
             alert("Ereh un makina premoh");
-        }
-
-            
-        
+        }       
 }
 

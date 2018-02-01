@@ -1,4 +1,4 @@
-var GAME_VERSION = "ALPHA-0.6";
+var GAME_VERSION = "ALPHA-0.9";
 var myGamePiece;
 var playing = false;
 var myObstacles = [];
@@ -8,13 +8,20 @@ var gameSpeed = 4;
 var TotalPoints = 0;
 var isDead = false;
 
+//Música y sonidos
+var musicBg = new sound("sounds/bg.mp3");
+var jumpSound = new sound("sounds/jump.wav");
+var deadSound = new sound("sounds/dead.wav");
+
+
 function startGame() {
     //Creamos el pj y los obstáculos
     myGamePiece = new component(51, 61, "imgs/pj.png", 30, 240, "pj");
     //grosor, altura total, color, posX, PosY
     myObstacle = new component(64, 64, "imgs/cactus.png", 300, 240, "cactus"); 
 
-    //Iniciamos el juego y las puntuaciones
+    //Iniciamos el juego, las puntuaciones
+    musicBg.play();
     myGameArea.start();
     puntuation();
     
@@ -34,6 +41,7 @@ function restart() {
     document.getElementById("centenas").src= "imgs/0.png";
 
     document.getElementById("dead").style.display = "none";
+    
     startGame();
 }
 var myGameArea = {
@@ -49,6 +57,8 @@ var myGameArea = {
         
     },
     stop : function() {
+        musicBg.stop();
+        deadSound.play();
         endGame();
         clearInterval(this.interval);
     },
@@ -118,11 +128,14 @@ function component(width, height, color, x, y, type) {
         }
     }
     this.jump = function (){
+        
         if (this.y > 230 && jumping == true){
             this.y -= this.gravity;
             
         }
         else{
+            //musicBg.play();
+            
             jumping = false;
             this.y += this.gravity;
         }
@@ -146,6 +159,21 @@ function component(width, height, color, x, y, type) {
         return crash;
     }
     }
+
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    //document.body.appendChild(this.sound);
+    this.play = function(){
+        this.sound.play();
+    }
+    this.stop = function(){
+        this.sound.pause();
+    }
+}
 
 
 function updateGameArea() {
@@ -182,6 +210,7 @@ function updateGameArea() {
             y = getRandomNum();
             //cada vez que sale un obj suma 1 a la puntuación
             puntuation();
+            sumPoints();
             //sumGameSpeed(TotalPoints);
             myObstacles.push(new component(30, 64, "imgs/obstaculo.png", myGameArea.canvas.width, y, "cactus"));
         }
@@ -228,6 +257,15 @@ function endGame(){
     playing = false;
     isDead = true;
 
+    if (TotalPoints > 100){
+        var lowPointsSound = new sound("sounds/wtf.wav");
+        lowPointsSound.play();
+    }
+    else {
+        var lowPointsSound = new sound("sounds/low_pts.wav");
+        lowPointsSound.play();
+    }
+
 }
 
 //Detectar la pulsación de la barra espaciadora (código 32)
@@ -238,10 +276,15 @@ document.onkeyup = checkKey2;
 function checkKey(e) {
 
     e = e || window.event;
+
+    if (onAir == false && e.keyCode == '32'){
+        jumpSound.play();
+        console.log("yea");
+    }
+
     if (e.keyCode == '32'){
         console.log("entra");
-        //Quita la imagen principal
-        
+
         if (playing == false && isDead == false){
             document.getElementById("preGame").style.display = "none";
             startGame();
