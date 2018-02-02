@@ -67,17 +67,17 @@ canvas {
 }
 
 #versionesButton a{
-    color: black;
     background-color: blue;
     border: solid;
     border-width: 5px;
+    border-radius: 8px;
     font-weight: bold;
     font-size: 25px;
     font-variant: small-caps;
     text-decoration: none;
     padding: 2px;
     position: fixed;
-    overflow: auto;
+    opacity: 0;
 }
 
 #versionesButton a:visited{
