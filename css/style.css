@@ -66,17 +66,20 @@ canvas {
     margin-left: 177px;
 }
 
-#versionesButton{
+#versionesButton a{
     color: black;
+    background-color: blue;
+    border: solid;
+    border-width: 5px;
     font-weight: bold;
     font-size: 25px;
     font-variant: small-caps;
     text-decoration: none;
-    padding: 20px;
+    padding: 2px;
     position: fixed;
     overflow: auto;
 }
 
-a:visited{
+#versionesButton a:visited{
     color: black;
 }
