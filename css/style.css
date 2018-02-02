@@ -65,3 +65,18 @@ canvas {
     bottom: 0;
     margin-left: 177px;
 }
+
+#versionesButton{
+    color: black;
+    font-weight: bold;
+    font-size: 25px;
+    font-variant: small-caps;
+    text-decoration: none;
+    padding: 20px;
+    position: fixed;
+    overflow: auto;
+}
+
+a:visited{
+    color: black;
+}
