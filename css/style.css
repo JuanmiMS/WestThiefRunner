@@ -50,7 +50,7 @@ canvas {
 }
 #recreativa{
     width: 780px;
-    height: 600px;
+    height: 811px;
     margin: auto;
     position: fixed;
     top: 0; 
@@ -63,7 +63,6 @@ canvas {
     min-width: 780px;
     position: absolute;
     bottom: 0;
-    margin-left: 177px;
 }
 
 #versionesButton a{
