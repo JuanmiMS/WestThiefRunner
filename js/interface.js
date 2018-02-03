@@ -1,4 +1,5 @@
-var nextPunt = "unidades";
+
+//Imagen de cada numero para la puntuación
 var img = [];
 z = 0;
 y = 0;
@@ -16,7 +17,9 @@ img[9] = "imgs/9.png";
 
 
 function puntuation() {
-        
+        /* Si la primera posicion llega a 10, se inicia a 0 y se suma 1 a la siguiente 
+        y así sucesivamente hasta 3 posiciones */
+        //Primera posición, unidades.
         if(z!=10){
             document.getElementById("unidades").src = img[x];
             
@@ -26,6 +29,7 @@ function puntuation() {
                 document.getElementById("decenas").src = img[y];
                 x=0;
             }
+            //Segunda posicion, decenas
             if(y == 10 && playing){
                 z++;
                 document.getElementById("decenas").src = img[0];
@@ -34,12 +38,14 @@ function puntuation() {
                 y=0;
                 
             }
+            //Tercera posición, centenas.
             if(z == 10 && playing){
                 document.getElementById("centenas").src = img[z];
             }
             x++;
         }else{
-            alert("Ereh un makina premoh");
+            //Si llega a la puntuación máxima 999, salta un mensaje.
+            alert("¡Ereh un makina premoh!");
         }       
 }
 
