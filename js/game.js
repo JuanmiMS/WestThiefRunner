@@ -292,7 +292,7 @@ function checkKey(e) {
         }
         
 
-        document.getElementById('redbutton').src="imgs/btn1.png";
+        document.getElementById('redbutton').src="imgs/btnpixel1.png";
         if (onAir == false) {      
             jumping = true;
             onAir = true;
@@ -311,5 +311,5 @@ function checkKey(e) {
 }
 
 function checkKey2(){
-    document.getElementById('redbutton').src="imgs/btn0.png";
+    document.getElementById('redbutton').src="imgs/btnpixel0.png";
 }
