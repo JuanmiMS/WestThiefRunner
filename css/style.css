@@ -82,3 +82,14 @@ canvas {
 #versionesButton a:visited{
     color: black;
 }
+
+footer p{
+    color: white;
+    position: fixed;
+    text-align: right;
+    font-size: 15px;
+    margin: auto;
+    overflow: auto;
+    bottom: 5px;
+    width: 99%;
+}
